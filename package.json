@@ -1,0 +1,28 @@
+{
+  "name": "swiggy",
+  "version": "1.0.0",
+  "description": "This is swiggy clone.",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankitpoonia2082/Swiggy.git"
+  },
+  "author": "Ankit Poonia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankitpoonia2082/Swiggy/issues"
+  },
+  "homepage": "https://github.com/ankitpoonia2082/Swiggy#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  }
+}
