@@ -1,10 +1,11 @@
 // Navbar___
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 // Logo Image___
-const logoImg = (<a href="/"><img className="logo" alt="logo" src="https://cdn.worldvectorlogo.com/logos/swiggy-1.svg" /></a>)
+const logoImg = (<Link to="/"><img className="logo" alt="logo" src="https://cdn.worldvectorlogo.com/logos/swiggy-1.svg" /></Link>)
 
 const Navbar = () => {
 
@@ -18,7 +19,7 @@ const Navbar = () => {
             <div className="navLinks">
 
                 <ul className="links">
-                    <li>Swiggy Corporate</li>
+                    <li><Link to={'/about'}>Swiggy Corporate</Link></li>
                     <li>Search</li>
                     <li>Offers</li>
                     <li>Help</li>

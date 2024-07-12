@@ -1,8 +1,10 @@
 //Shimmer UI
 
-const Shimmer = () => {
+import React from 'react';
+
+const Shimmer = ({ keys }) => {
   return (
-    <div className="shimmerBox">
+    <div key={keys} className="shimmerBox">
       <div className="shimmerImgDiv"></div>
       <div className="shimmerTextDiv">
         <div className="shimmerName"></div>
@@ -13,4 +15,12 @@ const Shimmer = () => {
   );
 };
 
-export default Shimmer;
+const Shimmers = () => {
+  return (<div className='ShimmersDivs'>
+    {Array(14)
+      .fill('')
+      .map(
+        (e, index) => <React.Fragment key={index}><Shimmer /></React.Fragment>)}</div>)
+}
+
+export default Shimmers;

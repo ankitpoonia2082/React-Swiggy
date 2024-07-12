@@ -2,8 +2,7 @@
 import Card from './RestroCard';
 import { swiggyApi } from "../../config";
 import { useEffect, useState } from "react";
-import Shimmer from './Shimmer';
-
+import Shimmers from './Shimmer';
 
 /**
  * Body Structure
@@ -36,7 +35,7 @@ const Body = () => {
         getSwiggyData();
     }, []);
 
-    // Calling API to get live data...;
+    // Calling API to get live data...
     const getSwiggyData = async () => {
         const data = await fetch(swiggyApi);
         const jsonData = await data.json();
@@ -53,7 +52,7 @@ const Body = () => {
 
 
     // Conditional rendering...
-    return !allRestaurants?.length ? <Shimmer /> : (
+    return !allRestaurants?.length ? <Shimmers /> : (
         <>
             <div className="searchbar">
                 <input type="text" value={searchtxt} onChange={(e) => {
