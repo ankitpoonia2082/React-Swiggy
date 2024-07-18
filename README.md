@@ -10,3 +10,5 @@ Day 3 : Learned about conditional rendering, Early return, useState hook and use
 
 Day 4 : Learned about react-router-dom, this library is used for client side rendering, gives us some usefull hooks to render different components on same page.
 Made api call for getting restaurant menu and rendering menu in /restaurant/:id component (using dynamic url).
+
+Day 5 : Learned about Class base components (componentDidMount, componentDidUpdate, ComponentWillUnmount, this.state, this.params). Learned how to make custom hooks, and created hooks that returns restaurant data, restaurant Menu data, and useOnline (tells that user is online or not, using browser api). Created restaurant offer cards, and rendered recomended items(food items). Created helper.js (utils) and put helper functions (filterRestaurantData) and done code cleaning (removing events on component unmount), and learned about things like render phase, commit phase and unmount phase.
