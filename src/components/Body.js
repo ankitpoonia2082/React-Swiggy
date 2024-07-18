@@ -1,8 +1,12 @@
 
-import Card from './RestroCard';
+import Card from './RestaurantCard';
 import { swiggyApi } from "../../config";
 import { useEffect, useState } from "react";
 import Shimmers from './Shimmer';
+import { Link } from 'react-router-dom';
+import { filterRestro } from "../utils/helper"
+import useRestaurant from "../utils/customHooks/useRestaurant";
+import useOnline from '../utils/customHooks/useOnline';
 
 /**
  * Body Structure
@@ -15,39 +19,28 @@ Body: -
         Cuizines
  */
 
-
-// Function for filtering searched restaurant...
-const filterRestro = (searchtxt, restaurantList) => {
-    return restaurantList.filter((restaurant) => restaurant?.info?.name?.toLowerCase().includes(searchtxt.toLowerCase()));
-};
-
-
 // Body Component:
 const Body = () => {
+
+    const restaurants = useRestaurant();
 
     // useState hook : to create a local state variable... 
     let [searchtxt, setSearchtxt] = useState('');
     let [allRestaurants, setAllRestaurants] = useState([]);
     let [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-    // useEffect hook : for calling fn that calls api , with empty dependency to call it ones after render...
-    useEffect(() => {
-        getSwiggyData();
-    }, []);
+    useEffect(
+        () => {
+            setAllRestaurants(restaurants)
+            setFilteredRestaurants(restaurants)
+        },
+        [restaurants]
+    );
 
-    // Calling API to get live data...
-    const getSwiggyData = async () => {
-        const data = await fetch(swiggyApi);
-        const jsonData = await data.json();
-        setAllRestaurants(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredRestaurants(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    };
+    // const isOnline = useOnline();
 
-    // Early return (Way to avoide component rendering)...
-    // if (!allRestaurants.length) {
-    //     return (
-    //         <div><h1>Check your internet connection...</h1></div>
-    //     );
+    // if (!isOnline) {
+    //     return (<h1>Sorry, something went wrong. Please check your network connection and try again.</h1>)
     // }
 
 
@@ -57,24 +50,27 @@ const Body = () => {
             <div className="searchbar">
                 <input type="text" value={searchtxt} onChange={(e) => {
                     setSearchtxt(e.target.value)
-                    // setRestaurants(filterRestro(searchtxt, restaurants))
                 }}
                     onKeyDown={(e) => {
                         if (e.key === "Enter")
-                            setFilteredRestaurants(filterRestro(searchtxt, allRestaurants));
+                            setFilteredRestaurants(filterRestro(searchtxt, restaurants));
                     }}
-                    placeholder="Search here..." input />
+                    placeholder="Search here..." ></input>
 
                 <button onClick={() => {
                     setFilteredRestaurants(filterRestro(searchtxt, allRestaurants))
                 }} >Search</button>
 
-            </div >
+            </div>
 
-            {(!filteredRestaurants.length) ? <h1>No restaurant fount matching {searchtxt}</h1> : <div className="body">
+            {(!filteredRestaurants.length) ? <h1>No restaurant found matching {searchtxt}</h1> : <div className="body">
                 <h1>Restaurants</h1>
                 <div className='restaurants-list'>{
-                    filteredRestaurants.map((restaurant) => < Card key={restaurant?.info?.id} {...restaurant.info} />)
+                    filteredRestaurants.map((restaurant) => {
+                        return (<Link to={"/restaurantMenu/" + restaurant?.info?.id} key={restaurant?.info?.id} >
+                            < Card {...restaurant.info} />
+                        </Link>)
+                    })
                 }
                 </div>
             </div>

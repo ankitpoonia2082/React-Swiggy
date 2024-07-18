@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/customHooks/useOnline"
 
 
 // Logo Image___
@@ -10,6 +11,7 @@ const logoImg = (<Link to="/"><img className="logo" alt="logo" src="https://cdn.
 const Navbar = () => {
 
     const [auth, setAuth] = useState(false);
+    const isOnline = useOnline();
 
     return (
         <div className="navbar">
@@ -26,6 +28,9 @@ const Navbar = () => {
                     <li>Sign In</li>
                     <li>Cart</li>
                 </ul>
+            </div>
+            <div>
+                <h3>{isOnline ? '🟢' : '🔴'}</h3>
             </div>
             <div className="login">
                 {

@@ -1,11 +1,10 @@
 import React from "react";
 import reactDOM from 'react-dom/client';
-
 import Navbar from './src/components/header';
 import Body from './src/components/Body';
 import Footer from './src/components/footer';
 import About from "./src/components/About";
-import Menu from "./src/components/RestroMenu";
+import Menu from "./src/components/RestaurantMenu";
 import ErrorPage from './src/components/Error';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -25,14 +24,10 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
             Copyrights
          */
 
-// Root from index.html___
+// Root from index.html
 const root = reactDOM.createRoot(document.getElementById('root'));
 
-
-
-// Main Container
 const AppLayout = () => (
-    // {<></> React Fragment}
     <>
         <Navbar />
         <Outlet />
@@ -42,7 +37,6 @@ const AppLayout = () => (
 
 
 // Creating routes using createBrowserRoute
-
 const appRoute = createBrowserRouter([
     {
         path: '/',
@@ -67,6 +61,5 @@ const appRoute = createBrowserRouter([
 
 // Reandering root;
 // root.render(<AppLayout />);
-
 
 root.render(<RouterProvider router={appRoute} />);

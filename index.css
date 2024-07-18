@@ -156,6 +156,10 @@ body {
 
 /* Full Menu Page */
 
+.menuItems {
+    margin-top: 100px;
+}
+
 .RestaurantFullMenu {
     padding-left: 20%;
     padding-right: 20%;
@@ -178,7 +182,7 @@ body {
 .dealsNavigationButtons>button {
     padding: 10px;
     border-radius: 50%;
-    background: gray;
+    background: rgb(200, 200, 200);
     border: none;
 }
 
@@ -190,17 +194,20 @@ body {
 .offerCard {
     border: 1px solid black;
     display: flex;
-    width: 350px;
-    height: 100px;
+    max-width: 700px;
+    height: 75px;
     padding: 5px;
-    margin: 20px;
+    margin: 10px;
     justify-content: space-between;
     border-radius: 20px;
 }
 
 .offerLogo {
-    margin: 10px;
     width: 20%;
+}
+
+.offerLogo>img {
+    width: 100%;
 }
 
 .offerDetails {
@@ -210,14 +217,22 @@ body {
 /* Restro Menu Items card */
 
 .restauarantMenuCard {
-    border: 1px solid black;
+    margin: 10px;
+    border-bottom: 0.5px solid rgb(0, 0, 0);
     display: flex;
     justify-content: space-between;
 }
 
+.itemRating {
+    display: flex;
+}
+
+.itemRating>h3 {
+    margin: 5px;
+}
+
 .menuDetail {
-    border: 1px solid black;
-    width: 70%;
+    width: 75%;
 }
 
 .itemPrice {
@@ -225,6 +240,10 @@ body {
 }
 
 .menuImage {
-    border: 1px solid black;
-    width: 30%;
+    width: 25%;
+}
+
+.itemImg {
+    border-radius: 10px;
+    width: 100%;
 }
