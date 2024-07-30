@@ -1,12 +1,10 @@
 
 import Card from './RestaurantCard';
-import { swiggyApi } from "../../config";
 import { useEffect, useState } from "react";
 import Shimmers from './Shimmer';
 import { Link } from 'react-router-dom';
 import { filterRestro } from "../utils/helper"
 import useRestaurant from "../utils/customHooks/useRestaurant";
-import useOnline from '../utils/customHooks/useOnline';
 
 /**
  * Body Structure
@@ -21,7 +19,6 @@ Body: -
 
 // Body Component:
 const Body = () => {
-
     const restaurants = useRestaurant();
 
     // useState hook : to create a local state variable... 
@@ -37,35 +34,27 @@ const Body = () => {
         [restaurants]
     );
 
-    // const isOnline = useOnline();
-
-    // if (!isOnline) {
-    //     return (<h1>Sorry, something went wrong. Please check your network connection and try again.</h1>)
-    // }
-
-
     // Conditional rendering...
     return !allRestaurants?.length ? <Shimmers /> : (
-        <>
-            <div className="searchbar">
-                <input type="text" value={searchtxt} onChange={(e) => {
+        <div className='px-20 py-10'>
+            <div className="flex justify-center">
+                <input type="text" className='border border-gray-500 rounded-full p-2' value={searchtxt} onChange={(e) => {
                     setSearchtxt(e.target.value)
                 }}
                     onKeyDown={(e) => {
                         if (e.key === "Enter")
                             setFilteredRestaurants(filterRestro(searchtxt, restaurants));
                     }}
-                    placeholder="Search here..." ></input>
-
-                <button onClick={() => {
+                    placeholder="Search here..." >
+                </input>
+                <button className='border border-gray-950 rounded-full p-2' onClick={() => {
                     setFilteredRestaurants(filterRestro(searchtxt, allRestaurants))
                 }} >Search</button>
-
             </div>
 
             {(!filteredRestaurants.length) ? <h1>No restaurant found matching {searchtxt}</h1> : <div className="body">
-                <h1>Restaurants</h1>
-                <div className='restaurants-list'>{
+                <h1 className='font-bold text-3xl'>Restaurants</h1>
+                <div className='flex flex-wrap justify-items-start'>{
                     filteredRestaurants.map((restaurant) => {
                         return (<Link to={"/restaurantMenu/" + restaurant?.info?.id} key={restaurant?.info?.id} >
                             < Card {...restaurant.info} />
@@ -75,7 +64,7 @@ const Body = () => {
                 </div>
             </div>
             }
-        </>
+        </div>
     )
 };
 

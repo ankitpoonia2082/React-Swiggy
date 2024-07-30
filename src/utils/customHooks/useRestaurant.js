@@ -14,12 +14,12 @@ const useRestaurant = () => {
     try {
       const data = await fetch(swiggyApi);
       const jsonData = await data.json();
+      // console.log(jsonData.data.cards)
       setRestaurants(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     } catch {
-      console.error('Error fetching restaurants data:', error); // Handle fetch errors
+      console.error('Error fetching restaurants data:', error);
     }
   };
-
   return restaurants;
 };
 

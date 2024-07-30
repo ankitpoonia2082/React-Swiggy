@@ -20,9 +20,7 @@ const useMenu = (id) => {
     }
   };
 
-  useEffect(() => {
-  }, [menuData]);
-
+  useEffect(() => { }, [menuData]);
   return menuData;
 };
 

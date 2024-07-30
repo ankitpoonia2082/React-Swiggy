@@ -1,12 +1,16 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import reactDOM from 'react-dom/client';
 import Navbar from './src/components/header';
 import Body from './src/components/Body';
 import Footer from './src/components/footer';
-import About from "./src/components/About";
 import Menu from "./src/components/RestaurantMenu";
 import ErrorPage from './src/components/Error';
+import Shimmer from './src/components/Shimmer';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
+// Dynamic import / Lazy Loading / Code Spliting...
+
+const About = lazy(() => import("./src/components/About"));
 
 
 // App Layout---
@@ -49,7 +53,9 @@ const appRoute = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />,
+                element: <Suspense fallback={<Shimmer />}>
+                    <About />
+                </Suspense>,
             },
             {
                 path: '/restaurantMenu/:id',

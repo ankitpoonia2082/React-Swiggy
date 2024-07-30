@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useOnline from "../utils/customHooks/useOnline"
+import { logo_url } from "../../config";
+import useOnline from "../utils/customHooks/useOnline";
 
-
-// Logo Image___
-const logoImg = (<Link to="/"><img className="logo" alt="logo" src="https://cdn.worldvectorlogo.com/logos/swiggy-1.svg" /></Link>)
 
 const Navbar = () => {
 
@@ -14,27 +12,28 @@ const Navbar = () => {
     const isOnline = useOnline();
 
     return (
-        <div className="navbar">
+        <div className="flex mb-5 justify-between shadow-lg p-4">
 
-            <div className="icon">{logoImg}</div>
+            <Link to="/" >
+                <img alt="logo" className="h-12" src={logo_url} />
+            </Link>
 
-            <div className="navLinks">
-
-                <ul className="links">
-                    <li><Link to={'/about'}>Swiggy Corporate</Link></li>
-                    <li>Search</li>
-                    <li>Offers</li>
-                    <li>Help</li>
-                    <li>Sign In</li>
-                    <li>Cart</li>
+            <div className="py-3">
+                <ul className="flex">
+                    <li className="px-3"><Link to={'/about'}>Swiggy Corporate</Link></li>
+                    <li className="px-3">Search</li>
+                    <li className="px-3">Offers</li>
+                    <li className="px-3">Help</li>
+                    <li className="px-3">Sign In</li>
+                    <li className="px-3">Cart</li>
                 </ul>
             </div>
-            <div>
+            <div className="p-3">
                 <h3>{isOnline ? '🟢' : '🔴'}</h3>
             </div>
             <div className="login">
                 {
-                    (auth) ? <button onClick={() => setAuth(false)} className="logoutBtn">Logout</button> : <button onClick={() => setAuth(true)} className="loginBtn">Login</button>
+                    (auth) ? <button onClick={() => setAuth(false)} className="bg-black">Logout</button> : <button onClick={() => setAuth(true)} className="loginBtn">Login</button>
                 }
             </div>
         </div>
