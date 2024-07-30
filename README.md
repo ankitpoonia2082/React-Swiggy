@@ -12,3 +12,7 @@ Day 4 : Learned about react-router-dom, this library is used for client side ren
 Made api call for getting restaurant menu and rendering menu in /restaurant/:id component (using dynamic url).
 
 Day 5 : Learned about Class base components (componentDidMount, componentDidUpdate, ComponentWillUnmount, this.state, this.params). Learned how to make custom hooks, and created hooks that returns restaurant data, restaurant Menu data, and useOnline (tells that user is online or not, using browser api). Created restaurant offer cards, and rendered recomended items(food items). Created helper.js (utils) and put helper functions (filterRestaurantData) and done code cleaning (removing events on component unmount), and learned about things like render phase, commit phase and unmount phase.
+
+Day 6 : Learned about lazy loading (Chuncking, Code Spliting, Dynamic Bundling, On demand loading, etc...), how to use Suspence to lazy load component.
+Learned about tailwind css, configure tailwind, removed all css and used tailwindcss class.
+Learned about a package named react slick, it is used to make sliders, made Top Picks Slider and Offers Section Slider using react slick and made                accordion of menu categories. 
