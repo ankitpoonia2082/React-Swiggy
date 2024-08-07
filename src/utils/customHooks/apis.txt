@@ -1,0 +1,54 @@
+API 1 :-
+Api nearby restaurants data : 'https://www.swiggy.com/mapi/homepage/getCards?lat=30.73390&lng=76.78890';
+
+
+1:  header : data?.success?.cards[4]?.gridWidget?.header --> {title, subtitle, imageId}
+
+2:  go to : data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+
+// FavouriteRestaurant / Top picks for you
+3: go to : data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants
+
+
+//----------------------------//
+
+API 2 :- (Chandigarh)
+
+    'https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=30.73390&lng=76.78890&carousel=true&third_party_vendor=1';
+
+1 : what's on your mind :
+
+    header : data?.cards[0]?.card?.card?.header?.title
+    cards : data?.cards[0]?.card?.card?.imageGridCards?.info
+
+2 : Top restaurants chains in Chandigarh :
+
+    header : data?.cards[1]?.card?.card?.header?.title
+
+    data : data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+
+3 : FavouriteRestaurant (Unknown) :
+    data : data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+
+4 : "Best Cuisines Near Me"
+
+    header : data?.cards[7]?.card?.card?.title
+
+    data : data?.cards[7]?.card?.card?.brands
+           data contains list of objects {text and link}
+
+5 : Explore Every Restaurants Near Me
+
+    header : data?.cards[8]?.card?.card?.title
+
+    data : data?.cards[8]?.card?.card?.brands
+
+6 : For better experience,download the Swiggy app now
+
+    header : data?.cards[9]?.card?.card?.title
+
+    data : data?.cards[9]?.card?.card 
+        androidAppImage
+        androidAppLink
+        iosAppImage
+        iosAppLink

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import MenuCard from "./RestaurantMenuCard";
+import Category from "./CategoryItems";
 import OfferCard from "./OfferCard";
 import TopPicks from "./TopPicks";
 import useMenu from "../utils/customHooks/useMenu";
@@ -20,19 +20,25 @@ const Menu = () => {
   const [restaurantData, setRestaurantData] = useState([]);
   const [restaurantOffers, setRestaurantOffers] = useState([]);
   const [restaurantInfo, setRestaurantInfo] = useState([]);
-  const [restaurantMenu, setRestaurantMenu] = useState([]);
+  const [restaurantAllMenu, setRestaurantAllMenu] = useState([]);
   const [topPicks, setTopPicks] = useState([]);
-  const [isVisible, setIsVisible] = useState(true);
-
 
   useEffect(() => {
     if (menu) {
       setRestaurantData(menu?.data || []);
-      setRestaurantMenu(menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards || menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards || []);
-      setRestaurantOffers(menu?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers || []);
       setRestaurantInfo(menu?.data?.cards[2]?.card?.card?.info || []);
+      setRestaurantOffers(menu?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers || []);
       setTopPicks(menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.carousel || []);
-    }
+
+      let data = menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      let arr = [];
+      data.map((item) => {
+        if (item?.card?.card?.title && item?.card?.card?.title !== 'Top Picks') {
+          arr.push(item?.card?.card);
+        };
+      });
+      setRestaurantAllMenu(arr);
+    };
   }, [menu]);
 
   var settings = {
@@ -55,8 +61,7 @@ const Menu = () => {
   const { name, locality, costForTwoMessage, cuisines, avgRatingString, totalRatingString, sla, expectationNotifiers
   } = restaurantInfo;
 
-
-  return (!restaurantMenu.length && !restaurantData.length) ? <h1>Loading menu...</h1> : (
+  return (!restaurantAllMenu.length && !restaurantData.length) ? <h1>Loading menu...</h1> : (
     <div className="my-11 mx-28">
 
       {/* Restaurant basic details */}
@@ -138,21 +143,11 @@ const Menu = () => {
             }
           </div>
 
-          {/* Recomended */}
-          <div>
-            <button className="w-full py-4" onClick={() => {
-              if (isVisible) setIsVisible(false);
-              else setIsVisible(true);
-            }}><div className="flex justify-between">
-                <h1 className="font-bold text-xl">
-                  Recomended ({restaurantMenu.length})
-                </h1>
-                <h1>⥯</h1>
-              </div></button>
-
-            {(!isVisible) ? '' : <div className="">
-              {restaurantMenu.map((item) => <MenuCard key={item?.card?.info?.id} {...item.card.info} />)}
-            </div>}
+          {/* Category wise items */}
+          <div className="my-14">
+            {restaurantAllMenu.map((data) =>
+              <Category {...data} key={data?.title} />
+            )}
           </div>
 
         </div>

@@ -7,6 +7,8 @@ export const IMG_CDN = "https://media-assets.swiggy.com/swiggy/image/upload/fl_l
 
 export const swiggyApi = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=29.1491875&lng=75.7216527&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING';
 
+export const swiggyApi2 = 'https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=29.1491875&lng=75.7216527&carousel=true&third_party_vendor=1';
+
 // Swiggy Get menu Api
 export const getMenu = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=29.1491875&lng=75.7216527&restaurantId=`;
 

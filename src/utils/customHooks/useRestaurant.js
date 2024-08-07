@@ -1,6 +1,6 @@
 // useRestaurant : gives us restaurants avalabel in our location;
 import { useState, useEffect } from "react";
-import { swiggyApi } from "../../../config";
+import { swiggyApi2 } from "../../../config";
 
 
 const useRestaurant = () => {
@@ -12,12 +12,13 @@ const useRestaurant = () => {
 
   const getSwiggyData = async () => {
     try {
-      const data = await fetch(swiggyApi);
+      const data = await fetch(swiggyApi2, {
+        method: 'GET',
+      });
       const jsonData = await data.json();
-      // console.log(jsonData.data.cards)
-      setRestaurants(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      setRestaurants(jsonData?.data?.cards)
     } catch {
-      console.error('Error fetching restaurants data:', error);
+      window.alert('Error fetching restaurants data:');
     }
   };
   return restaurants;

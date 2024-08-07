@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/ankitpoonia2082/React-Swiggy.git"
   },
+  "proxy": "https://www.swiggy.com",
   "author": "Ankit Poonia",
   "license": "ISC",
   "bugs": {
