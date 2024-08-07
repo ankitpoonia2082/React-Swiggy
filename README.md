@@ -15,4 +15,10 @@ Day 5 : Learned about Class base components (componentDidMount, componentDidUpda
 
 Day 6 : Learned about lazy loading (Chuncking, Code Spliting, Dynamic Bundling, On demand loading, etc...), how to use Suspence to lazy load component.
 Learned about tailwind css, configure tailwind, removed all css and used tailwindcss class.
-Learned about a package named react slick, it is used to make sliders, made Top Picks Slider and Offers Section Slider using react slick and made                accordion of menu categories. 
+Learned about a package named react slick, it is used to make sliders, made Top Picks Slider and Offers Section Slider using react slick and made              accordion of menu categories. 
+
+Day 7 : Learned how to drill props. Props drilling is way to pass data to child components.
+Learned about "Lifting the state up". This is the way to give control of children components state using parent. Made a custom accordian using the lifting the state up, only one accordian onens at a time if another is opened all other collapse.
+Learned about React dev tools. React dev tools have two sections Components and Profiler. Components shows all the components tree and profiler records what we do in our app and shows how much time all the things are taking and this tells that where should we optimize our application.
+Learned about Context. Context is a hook which allow us to make a peice of data accessible anywhere in our app. To make and use is hook known as createContext
+to create context and useContext to use context data. To use context data in class based component we can use <contextName.Consmer> {JSX} </ contextName.Consumer>. To update data of context we use Provider as contextName.Provider. React dev tools don't shows context name, to see name of context we use DisplayName as contextName.DisplayName. 
