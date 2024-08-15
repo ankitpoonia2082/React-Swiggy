@@ -57,13 +57,13 @@ const Body = () => {
                     setTopRestaurantsData(restaurants?.[1]?.card?.card || []);
                 };
 
-                // Seating restaurant data
+                // Seting restaurant data
                 setAllRestaurants(restaurants?.[3]?.card?.card?.gridElements?.infoWithStyle.restaurants || restaurants?.[4]?.card?.card?.gridElements?.infoWithStyle.restaurants || []);
 
-                // Seating restaurant data for filtering
+                // Seting restaurant data for filtering
                 setFilteredRestaurants(restaurants?.[3]?.card?.card?.gridElements?.infoWithStyle.restaurants || restaurants?.[4]?.card?.card?.gridElements?.infoWithStyle.restaurants || []);
 
-                // Seating whats on your mind data
+                // Seting whats on your mind data
                 if (restaurants?.[0]?.card?.card?.header?.title == "What's on your mind?") {
                     setWhatOnYourMindData(restaurants?.[0]?.card?.card);
                 };
@@ -108,9 +108,11 @@ const Body = () => {
                 <>
                     {(!showSearch) ? '' :
                         <div className="flex justify-center">
-                            <input type="text" className='border border-gray-300 rounded-s-lg min-w-full p-2' value={searchtxt} onChange={(e) => {
-                                setSearchtxt(e.target.value)
-                            }}
+                            <input type="text"
+                                className='border border-gray-300 rounded-s-lg min-w-full p-2'
+                                value={searchtxt} onChange={(e) => {
+                                    setSearchtxt(e.target.value)
+                                }}
                                 onKeyDown={(e) => {
                                     if (e.key === "Enter")
                                         setFilteredRestaurants(filterRestro(searchtxt, restaurants));
@@ -126,18 +128,18 @@ const Body = () => {
                 </>
 
                 {/* What's on your mind */}
-                <>
+                {(!whatOnYourMindData) ? '' : <>
                     {(!whatOnYourMindData) ? '' : <WhatsOnYourMindCard {...whatOnYourMindData} />}
-                </>
+                </>}
 
                 {/* Top restaurant chains in city Component */}
-                <>
+                {(!topRestaurantsData) ? '' : <>
                     {(!topRestaurantsData) ? '' :
                         <TopRestaurants {...topRestaurantsData} />
                     }
-                </>
+                </>}
 
-                {/* Restaurant with online food delivery component */}
+                {/* Restaurant component */}
                 <>
                     {(!filteredRestaurants.length) ? <h1>No restaurant found matching {searchtxt}</h1> :
                         <div className="my-10">

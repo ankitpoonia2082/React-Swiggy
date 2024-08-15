@@ -16,7 +16,8 @@ const Category = ({ title, itemCards }) => {
                         {title} ({itemCards.length})
                     </h1>
                     <h1>⥯</h1>
-                </div></button>
+                </div>
+            </button>
 
             {(!isVisible) ? '' : <div className="">
                 {itemCards.map((item) => <MenuCard key={item?.card?.info?.id} {...item.card.info} />)}

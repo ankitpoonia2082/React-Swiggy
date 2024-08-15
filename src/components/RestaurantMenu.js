@@ -7,9 +7,11 @@ import OfferCard from "./OfferCard";
 import TopPicks from "./TopPicks";
 import useMenu from "../utils/customHooks/useMenu";
 import Slider from "react-slick";
+import Shimmer from "./Shimmer";
 // Import css files for react-slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { filterItems } from "../utils/helper";
 
 const Menu = () => {
   const { id } = useParams();
@@ -21,7 +23,9 @@ const Menu = () => {
   const [restaurantOffers, setRestaurantOffers] = useState([]);
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [restaurantAllMenu, setRestaurantAllMenu] = useState([]);
+  const [allMenuFiltered, setAllMenuFiltered] = useState([]);
   const [topPicks, setTopPicks] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     if (menu) {
@@ -38,6 +42,7 @@ const Menu = () => {
         };
       });
       setRestaurantAllMenu(arr);
+      setAllMenuFiltered(arr);
     };
   }, [menu]);
 
@@ -61,7 +66,7 @@ const Menu = () => {
   const { name, locality, costForTwoMessage, cuisines, avgRatingString, totalRatingString, sla, expectationNotifiers
   } = restaurantInfo;
 
-  return (!restaurantAllMenu.length && !restaurantData.length) ? <h1>Loading menu...</h1> : (
+  return (!restaurantAllMenu.length && !restaurantData.length) ? <Shimmer /> : (
     <div className="my-11 mx-28">
 
       {/* Restaurant basic details */}
@@ -79,6 +84,7 @@ const Menu = () => {
         </div>
       </div>
 
+      {/* Restaurant Data */}
       <div className="flex flex-col justify-between my-8">
 
         {/* Restaurant deals and offer details */}
@@ -114,7 +120,16 @@ const Menu = () => {
 
           {/* Searchbar in menu */}
           <div className="border-b py-5">
-            <input className="w-full bg-slate-100 text-center py-3 rounded-lg" placeholder="Search for dishes"></input>
+            <input
+              className="w-full bg-slate-100 text-center py-3 rounded-lg"
+              placeholder="Search for dishes"
+              onChange={(e) => { setSearchValue(e.target.value) }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setAllMenuFiltered(filterItems(searchValue, restaurantAllMenu))
+                };
+              }}
+            ></input>
           </div>
 
           {/* Top Picks */}
@@ -145,7 +160,7 @@ const Menu = () => {
 
           {/* Category wise items */}
           <div className="my-14">
-            {restaurantAllMenu.map((data) =>
+            {allMenuFiltered.map((data) =>
               <Category {...data} key={data?.title} />
             )}
           </div>

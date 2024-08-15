@@ -4,9 +4,12 @@ import Navbar from './src/components/header';
 import Body from './src/components/Body';
 import Footer from './src/components/footer';
 import Menu from "./src/components/RestaurantMenu";
+import Cart from "./src/components/cartComponents/Cart";
 import ErrorPage from './src/components/Error';
 import Shimmer from './src/components/Shimmer';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { Provider } from "react-redux";
+import store from "./src/utils/store";
 
 // Dynamic import / Lazy Loading / Code Spliting...
 
@@ -32,11 +35,11 @@ const About = lazy(() => import("./src/components/About"));
 const root = reactDOM.createRoot(document.getElementById('root'));
 
 const AppLayout = () => (
-    <>
+    <Provider store={store}>
         <Navbar />
         <Outlet />
         <Footer />
-    </>
+    </Provider>
 );
 
 
@@ -60,6 +63,10 @@ const appRoute = createBrowserRouter([
             {
                 path: '/restaurantMenu/:id',
                 element: <Menu />,
+            },
+            {
+                path: '/cart',
+                element: <Cart />,
             },
         ],
     },

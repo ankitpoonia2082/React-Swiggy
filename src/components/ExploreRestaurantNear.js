@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 const ExploreRestaurantsNearMe = ({ data, title, brands, isVisible, setIsVisible }) => {
-    console.log({ isVisible, setIsVisible })
 
     return (
         <div className="my-10">

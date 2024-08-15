@@ -5,6 +5,7 @@ import Slider from "react-slick";
 // Import css files for react-slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 const TopRestaurants = (data) => {
 
@@ -38,7 +39,10 @@ const TopRestaurants = (data) => {
 
                 <div className='my-5'>
                     <Slider ref={topRestaurantSliderRef} {...topRestaurantSettings}>
-                        {restaurants.map((item) => <Card key={item?.info?.id} {...item?.info} />)}
+                        {restaurants.map((item) =>
+                            <Link to={"/restaurantMenu/" + item?.info?.id} key={item?.info?.id}>
+                                <Card {...item?.info} />
+                            </Link>)}
                     </Slider>
                 </div>
             </div>
