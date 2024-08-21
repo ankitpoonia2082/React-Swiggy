@@ -10,6 +10,8 @@ import Shimmer from './src/components/Shimmer';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "./src/utils/store";
+import Login from "./src/components/Login";
+import Register from "./src/components/Register";
 
 // Dynamic import / Lazy Loading / Code Spliting...
 
@@ -54,12 +56,12 @@ const appRoute = createBrowserRouter([
                 path: '/',
                 element: <Body />,
             },
-            {
-                path: '/about',
-                element: <Suspense fallback={<Shimmer />}>
-                    <About />
-                </Suspense>,
-            },
+            // {
+            //     path: '/about',
+            //     element: <Suspense fallback={<Shimmer />}>
+            //         <About />
+            //     </Suspense>,
+            // },
             {
                 path: '/restaurantMenu/:id',
                 element: <Menu />,
@@ -67,6 +69,14 @@ const appRoute = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />,
+            },
+            {
+                path: '/login',
+                element: <Login />,
+            },
+            {
+                path: '/regsterUser',
+                element: <Register />,
             },
         ],
     },

@@ -34,6 +34,7 @@ const Body = () => {
     // Custom Hook
     const restaurants = useRestaurant();
 
+
     // useState hook : to create a local state variable... 
     const [showSearch, setShowSearch] = useState(true);
     const [searchtxt, setSearchtxt] = useState('');

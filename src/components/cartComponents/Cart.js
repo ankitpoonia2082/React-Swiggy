@@ -89,7 +89,7 @@ const Cart = () => {
                                     else price = +item.price;
                                     total = total + (price) / 100
                                     return (
-                                        <div className="flex justify-between my-1">
+                                        <div className="flex justify-between my-1" key={item.id}>
                                             {/* Veg - non-veg logo */}
                                             {(item.isVeg) ?
                                                 <img className="w-5" src={veg_logo}></img> :
